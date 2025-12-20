@@ -63,8 +63,8 @@ jobs:
 
           # ===== HEADER =====
           {
-            echo '#EXTM3U billed-msg="RJM Tv - RJMBTS Network"'
-            echo '# Pushed and Updated by Kittujk'
+            echo '#EXTM3U name="Sknl" playlist-name="Sknl | Local Kannada" billed-msg="RJM Tv - RJMBTS Network"'
+            echo "# Pushed & Updated by — Kittujk"
             echo '# Coded & Maintained @RJMBTS'
             echo "# Last updated on : $timestamp"
             echo "# Channels : Total - $total | Updated - $total"
