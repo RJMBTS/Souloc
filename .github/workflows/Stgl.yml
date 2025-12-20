@@ -39,7 +39,7 @@ jobs:
           mkdir -p Pawn
           out_file="Pawn/Stgl.m3u"
 
-          SRC_URL="https://rjmsbts.github.io/Souloc/Mazes/Stgl.m3u"
+          SRC_URL="https://rjmbts.github.io/Souloc/Mazes/Stgl.m3u"
 
           echo "🌐 Fetching source:"
           echo "$SRC_URL"
