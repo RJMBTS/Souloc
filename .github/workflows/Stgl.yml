@@ -22,10 +22,9 @@ jobs:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: 🧩 Build Stgl.m3u 
-      
+      - name: 🧩 Build Stgl.m3u
         shell: bash
         env:
           TZ: "Asia/Kolkata"
@@ -36,6 +35,7 @@ jobs:
           trap 'rm -rf "$tmpdir"' EXIT
 
           timestamp=$(date +"%Y-%m-%d %H:%M:%S %Z")
+
           mkdir -p Pawn
           out_file="Pawn/Stgl.m3u"
 
@@ -72,22 +72,15 @@ jobs:
 
           total=$(grep -c '^#EXTINF' "$tmpdir/all_unique.m3u" || echo 0)
 
-          # ===== STRICT GROUPING =====
-          echo "📂 Grouping → EXACT 'ETV' only"
+          # ===== UNIFORM GROUPING (NO ETV LOGIC) =====
+          echo "📂 Grouping → Local | Telugu"
 
           awk '
             /^#EXTINF/ {
               split($0, a, ",")
               name=a[2]
 
-              name_uc = toupper(name)
-
-              # EXACT standalone ETV ONLY
-              if (name_uc ~ /(^|[^A-Z0-9])ETV([^A-Z0-9]|$)/) {
-                group="RJM | ETv Win"
-              } else {
-                group="Local | Telugu"
-              }
+              group="Local | Telugu"
 
               info="#EXTINF:-1 group-title=\"" group "\" tvg-category=\"" group "\"," name
 
@@ -132,7 +125,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes — skipping commit."
           else
-            git commit -m "🔄 Auto-update Pawn/Stgl.m3u (Exact ETV Only)"
+            git commit -m "🔄 Auto-update Pawn/Stgl.m3u"
             git pull --rebase origin main || git rebase --abort
             git push origin main || echo "⚠️ Push failed"
           fi
