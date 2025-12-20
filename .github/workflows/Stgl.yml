@@ -52,7 +52,7 @@ jobs:
             exit 1
           fi
 
-          # ===== DEDUPLICATION =====
+          # ===== DEDUPLICATION (EXTINF + URL) =====
           echo "🧹 Removing duplicates..."
           awk '
             /^#EXTINF/ {
@@ -72,33 +72,44 @@ jobs:
 
           total=$(grep -c '^#EXTINF' "$tmpdir/all_unique.m3u" || echo 0)
 
-          # ===== UNIFORM GROUPING (NO ETV LOGIC) =====
+          # ===== UNIFORM GROUPING (PRESERVE ALL ATTRIBUTES) =====
           echo "📂 Grouping → Local | Telugu"
 
           awk '
             /^#EXTINF/ {
-              split($0, a, ",")
-              name=a[2]
-
+              line=$0
               group="Local | Telugu"
 
-              info="#EXTINF:-1 group-title=\"" group "\" tvg-category=\"" group "\"," name
+              # Remove existing group-title & tvg-category
+              gsub(/group-title="[^"]*"/, "", line)
+              gsub(/tvg-category="[^"]*"/, "", line)
+
+              # Normalize spacing
+              gsub(/[[:space:]]+/, " ", line)
+
+              # Inject new group fields
+              sub(/^#EXTINF:-1[ ]*/, "#EXTINF:-1 group-title=\"" group "\" tvg-category=\"" group "\" ", line)
 
               getline url
               gsub(/^[ \t\r\n]+|[ \t\r\n]+$/, "", url)
 
               if (url=="" || url !~ /^https?:\/\//) next
 
-              print info
+              print line
               print url
             }
           ' "$tmpdir/all_unique.m3u" > "$tmpdir/grouped.m3u"
 
           updated=$(grep -c '^#EXTINF' "$tmpdir/grouped.m3u" || echo 0)
 
+          if [ "$updated" -eq 0 ]; then
+            echo "❌ No channels processed — aborting"
+            exit 1
+          fi
+
           # ===== FINAL HEADER =====
           {
-            echo '#EXTM3U billed-msg="RJM Tv - RJMBTS Network"'
+            echo '#EXTM3U name="Stgl" playlist-name="Stgl | Local Telugu" billed-msg="RJM Tv - RJMBTS Network"'
             echo "# Pushed & Updated by — Kittujk"
             echo "# Coded & Maintained by @RJMBTS"
             echo "# Last updated on : $timestamp"
