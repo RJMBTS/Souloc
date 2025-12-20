@@ -39,7 +39,7 @@ jobs:
           mkdir -p Bishop
           out_file="Pawn/Stgl.m3u"
 
-          SRC_URL="https://rjmsbts.github.io/Souloc/Mazes/Soutgl.m3u"
+          SRC_URL="https://rjmsbts.github.io/Souloc/Mazes/Stgl.m3u"
 
           echo "🌐 Fetching source:"
           echo "$SRC_URL"
