@@ -36,7 +36,7 @@ jobs:
           trap 'rm -rf "$tmpdir"' EXIT
 
           timestamp=$(date +"%Y-%m-%d %H:%M:%S %Z")
-          mkdir -p Bishop
+          mkdir -p Pawn
           out_file="Pawn/Stgl.m3u"
 
           SRC_URL="https://rjmsbts.github.io/Souloc/Mazes/Stgl.m3u"
