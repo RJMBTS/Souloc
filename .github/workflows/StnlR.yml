@@ -41,14 +41,9 @@ jobs:
           SRC_URL="https://rjmbts.github.io/Souloc/Mazes/StnlR.m3u"
 
           echo "🌐 Fetching source:"
-          echo "$SRC_URL"
+          curl -fsSL --max-time 60 "$SRC_URL" > "$tmpdir/raw.m3u"
 
-          if ! curl -fsSL --max-time 60 "$SRC_URL" > "$tmpdir/raw.m3u"; then
-            echo "❌ Failed to fetch source"
-            exit 1
-          fi
-
-          echo "🎧 Normalizing Tamil Radio entries..."
+          echo "🎧 Normalizing radio entries..."
 
           awk '
           BEGIN { RS="#EXTINF"; }
@@ -59,18 +54,18 @@ jobs:
             ext = lines[1]
             url = ""
 
-            # Extract station name (after last comma)
+            # -------- Station name --------
             name = ext
             sub(/^.*?,[ \t]*/, "", name)
             gsub(/[ \t\r]+$/, "", name)
 
-            # Extract tvg-logo if present
+            # -------- Preserve tvg-logo --------
             logo = ""
             if (match(ext, /tvg-logo="[^"]*"/)) {
               logo = substr(ext, RSTART+10, RLENGTH-11)
             }
 
-            # Find first valid URL
+            # -------- Find stream URL --------
             for (i = 2; i <= n; i++) {
               gsub(/^[ \t\r]+|[ \t\r]+$/, "", lines[i])
               if (lines[i] ~ /^https?:\/\//) {
@@ -80,35 +75,36 @@ jobs:
             }
 
             if (url == "" || name == "") next
-
-            # Deduplicate by URL
             if (seen[url]++) next
 
-            print "#EXTINF:1 tvg-type=\"radio\" radio=\"true\" group-title=\"Tamil | Radio\" tvg-logo=\"" logo "\", " name
+            # -------- Group routing --------
+            group = "Tamil | Radio"
+            lname = tolower(name)
+
+            if (lname ~ /(bhakthi|bakthi|om ?sai)/) {
+              group = "Tamil | Devotional"
+            }
+
+            print "#EXTINF:1 tvg-type=\"radio\" radio=\"true\" group-title=\"" group "\" tvg-logo=\"" logo "\", " name
             print url
           }
           ' "$tmpdir/raw.m3u" > "$tmpdir/radio_unique.m3u"
 
           total=$(grep -c '^#EXTINF' "$tmpdir/radio_unique.m3u" || echo 0)
-
-          if [ "$total" -eq 0 ]; then
-            echo "❌ No radio streams found after processing"
-            exit 1
-          fi
+          [ "$total" -eq 0 ] && { echo "❌ No radio streams found"; exit 1; }
 
           {
             echo '#EXTM3U billed-msg="RJM Radio - RJMBTS Network"'
             echo "# Pushed & Updated by — Kittujk"
             echo "# Coded & Maintained by @RJMBTS"
             echo "# Last updated on : $timestamp"
-            echo "# Tamil Radio Streams : $total"
+            echo "# Total Radio Streams : $total"
             echo ""
           } > "$out_file"
 
           cat "$tmpdir/radio_unique.m3u" >> "$out_file"
 
-          echo "✅ Pawn/StnlR.m3u generated"
-          echo "🎧 Total Tamil radio streams: $total"
+          echo "✅ Pawn/StnlR.m3u generated ($total streams)"
 
       - name: 🚀 Commit & Push StnlR.m3u
         shell: bash
@@ -123,7 +119,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes — skipping commit."
           else
-            git commit -m "🎧 Auto-update Pawn/StnlR.m3u (Tamil Radio)"
+            git commit -m "🎧 Auto-update Pawn/StnlR.m3u (Devotional split)"
             git pull --rebase origin main || git rebase --abort
             git push origin main || echo "⚠️ Push failed"
           fi
