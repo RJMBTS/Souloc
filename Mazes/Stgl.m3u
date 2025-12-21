@@ -160,7 +160,7 @@ https://mumbai-edge.smartplaytv.in/SSLCMusic/index.m3u8
 https://mumbai-edge.smartplaytv.in/acn/index.m3u8
 #EXTINF:-1 group-title="Telugu Local Channel" tvg-logo="", Rapid Media
 https://mumbai-edge.smartplaytv.in/RapidMedia/index.m3u8
-#EXTINF:-1 group-title="Telugu Local Channel" tvg-logo="", MY TV
+#EXTINF:-1 group-title="Telugu Local Channel" tvg-logo="", My Tv
 https://mumbai-edge.smartplaytv.in/MyTV/index.m3u8
 #EXTINF:-1 group-title="Telugu Local Channel" tvg-logo="", City News Telugu
 https://mumbai-edge.smartplaytv.in/CityNewsTelugu/index.m3u8
