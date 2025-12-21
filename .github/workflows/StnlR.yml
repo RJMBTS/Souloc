@@ -91,7 +91,7 @@ jobs:
           echo "✅ Pawn/StnlR.m3u generated successfully"
           echo "🎧 Total unique radio streams: $total"
 
-      - name: 🚀 Commit & Push StglR.m3u
+      - name: 🚀 Commit & Push StnlR.m3u
         shell: bash
         run: |
           set -euxo pipefail
