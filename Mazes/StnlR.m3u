@@ -14,7 +14,7 @@ https://stream.zeno.fm/pvs9y6c4138uv
 https://stream.zeno.fm/s1ydp51scuhvv
 #EXTINF:-1 tvg-id="3006" tvg-name="Raja HD" group-title="Tamil FM Radio" ,Raja HD
 https://stream.zeno.fm/10xewnmcbkhvv
-#EXTINF:-1 tvg-id="3007" tvg-name="TamilKuyil HD" group-title="Tamil FM Radio" ,Raja Radio HD TamilKuyil Radio
+#EXTINF:-1 tvg-id="3007" tvg-name="TamilKuyil HD" group-title="Tamil FM Radio" ,TamilKuyil Radio
 http://live.tamilkuyilradio.com:8026/rajaradio
 #EXTINF:-1 tvg-id="3008" tvg-name="A.R.Rahman FM" group-title="Tamil FM Radio" ,A.R.Rahman FM
 https://stream.zeno.fm/8vs416z3b48uv
@@ -22,9 +22,9 @@ https://stream.zeno.fm/8vs416z3b48uv
 https://stream.zeno.fm/0az0qx8e4p8uv
 #EXTINF:-1 tvg-id="3010" group-title="Tamil FM Radio" ,SPB Hits HD
 https://stream.zeno.fm/ey44ycfscuhvv
-#EXTINF:-1 tvg-id="3011" group-title="Tamil FM Radio" ,SPB Old Hits
+#EXTINF:-1 tvg-id="3011" group-title="Tamil FM Radio" ,S.P.B Old Hits
 https://stream.zeno.fm/cgyvbgd2w0hvv
-#EXTINF:-1 tvg-id="3012" group-title="Tamil FM Radio" ,K. J. Yesudas Fm
+#EXTINF:-1 tvg-id="3012" group-title="Tamil FM Radio" ,K.J.Yesudas Fm
 https://stream.zeno.fm/avt4e9yaa48uv
 #EXTINF:-1 tvg-id="3013" group-title="Tamil FM Radio" ,Mano Hits Fm
 https://stream.zeno.fm/we99zw61w0hvv
@@ -32,7 +32,7 @@ https://stream.zeno.fm/we99zw61w0hvv
 https://stream.zeno.fm/qdvuf5e4138uv
 #EXTINF:-1 tvg-id="3015" group-title="Tamil FM Radio" ,Yuvan Shankar Hits
 https://stream.zeno.fm/f939szg6a48uv
-#EXTINF:-1 tvg-id="3016" group-title="Tamil FM Radio" ,D. Imman Hits
+#EXTINF:-1 tvg-id="3016" group-title="Tamil FM Radio" ,D.Imman Hits
 https://stream.zeno.fm/1zsd11zaa48uv
 #EXTINF:-1 tvg-id="3017" group-title="Tamil FM Radio" ,Deva Radio
 https://stream.zeno.fm/6cxuhfmcbkhvv
@@ -46,7 +46,7 @@ https://stream.zeno.fm/gu69vryaa48uv
 https://stream.zeno.fm/y7mgyn41w0hvv
 #EXTINF:-1 tvg-id="3022" group-title="Tamil FM Radio" ,Malaysia Vasudevan
 https://stream.zeno.fm/3a94ce63b48uv
-#EXTINF:-1 tvg-id="3023" group-title="Tamil FM Radio" ,S. A. Rajkumar Hits
+#EXTINF:-1 tvg-id="3023" group-title="Tamil FM Radio" ,S.A.Rajkumar Hits
 https://stream.zeno.fm/f336ys61w0hvv
 #EXTINF:-1 tvg-id="3024" group-title="Tamil FM Radio" ,Sid Sriram Hits
 https://stream.zeno.fm/5vxa8zyaa48uv
@@ -54,9 +54,9 @@ https://stream.zeno.fm/5vxa8zyaa48uv
 https://stream.zeno.fm/czvuphmcbkhvv
 #EXTINF:-1 tvg-id="3026" group-title="Tamil FM Radio" ,Sujatha Hits
 https://stream.zeno.fm/mp5zgsmcbkhvv
-#EXTINF:-1 tvg-id="3027" group-title="Tamil FM Radio" ,S. Janaki Hits
+#EXTINF:-1 tvg-id="3027" group-title="Tamil FM Radio" ,S.Janaki Hits
 https://stream.zeno.fm/ewdn3pfcbkhvv
-#EXTINF:-1 tvg-id="3028" group-title="Tamil FM Radio" ,KS Chitra Hits
+#EXTINF:-1 tvg-id="3028" group-title="Tamil FM Radio" ,K.S Chitra Hits
 https://stream.zeno.fm/h9vqwpmcbkhvv
 #EXTINF:-1 tvg-id="3029" group-title="Tamil FM Radio" ,Swarnalatha Hits
 https://stream.zeno.fm/gr6nspzaa48uv
@@ -136,15 +136,15 @@ https://stream.zeno.fm/v8xtnsyaa48uv
 https://stream.zeno.fm/hy2usugmdq8uv
 #EXTINF:-1 tvg-id="3067" group-title="Tamil FM Radio" ,T.M.Soundararajan
 https://stream.zeno.fm/xx7raqc1c48uv
-#EXTINF:-1 tvg-id="3068" group-title="Tamil FM Radio" ,A. M. Rajah
+#EXTINF:-1 tvg-id="3068" group-title="Tamil FM Radio" ,A.M.Rajah
 https://stream.zeno.fm/ngpkkb9y338uv
-#EXTINF:-1 tvg-id="3069" group-title="Tamil FM Radio" ,J. P. Chandrababu
+#EXTINF:-1 tvg-id="3069" group-title="Tamil FM Radio" ,J.P.Chandrababu
 https://stream.zeno.fm/uprgkb5w338uv
-#EXTINF:-1 tvg-id="3070" group-title="Tamil FM Radio" ,P. B. Sreenivas
+#EXTINF:-1 tvg-id="3070" group-title="Tamil FM Radio" ,P.B.Sreenivas
 https://stream.zeno.fm/kxqaxf7t438uv
-#EXTINF:-1 tvg-id="3071" group-title="Tamil FM Radio" ,Old Gold Radio Cuckoo Radio
+#EXTINF:-1 tvg-id="3071" group-title="Tamil FM Radio" ,Cuckoo Radio
 http://live.tamilkuyilradio.com:8002/oldgoldradio
 #EXTINF:-1 tvg-id="3072" group-title="Tamil FM Radio" ,OM Radio
 http://playerservices.streamtheworld.com/api/livestream-redirect/OMRADIO_S01AAC_SC
-#EXTINF:-1 tvg-id="3073" group-title="Tamil FM Radio" ,Bakthi lsai Radio
+#EXTINF:-1 tvg-id="3073" group-title="Tamil FM Radio" ,Bakthi Isai Radio
 https://bakthiisai-unicast2u.radioca.st/stream
