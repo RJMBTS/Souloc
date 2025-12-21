@@ -24,7 +24,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🎧 Build StnlR.m3u (AUDIO ONLY – NORMALIZED)
+      - name: 🎧 Build StnlR.m3u (Audio Only – Normalized)
         shell: bash
         env:
           TZ: "Asia/Kolkata"
@@ -40,10 +40,10 @@ jobs:
 
           SRC_URL="https://rjmbts.github.io/Souloc/Mazes/StnlR.m3u"
 
-          echo "🌐 Fetching source:"
+          echo "🌐 Fetching source playlist..."
           curl -fsSL --max-time 60 "$SRC_URL" > "$tmpdir/raw.m3u"
 
-          echo "🎧 Normalizing radio entries..."
+          echo "🎧 Processing radio entries..."
 
           awk '
           BEGIN { RS="#EXTINF"; }
@@ -54,18 +54,18 @@ jobs:
             ext = lines[1]
             url = ""
 
-            # -------- Station name --------
+            # ---------- Station name ----------
             name = ext
             sub(/^.*?,[ \t]*/, "", name)
             gsub(/[ \t\r]+$/, "", name)
 
-            # -------- Preserve tvg-logo --------
+            # ---------- Preserve tvg-logo ----------
             logo = ""
             if (match(ext, /tvg-logo="[^"]*"/)) {
               logo = substr(ext, RSTART+10, RLENGTH-11)
             }
 
-            # -------- Find stream URL --------
+            # ---------- Find stream URL ----------
             for (i = 2; i <= n; i++) {
               gsub(/^[ \t\r]+|[ \t\r]+$/, "", lines[i])
               if (lines[i] ~ /^https?:\/\//) {
@@ -77,11 +77,13 @@ jobs:
             if (url == "" || name == "") next
             if (seen[url]++) next
 
-            # -------- Group routing --------
+            # ---------- Group routing ----------
             group = "Tamil | Radio"
-            lname = tolower(name)
 
-            if (lname ~ /(bhakthi|bakthi|om ?sai)/) {
+            lname = tolower(name)
+            gsub(/[-_]+/, " ", lname)   # normalize separators
+
+            if (lname ~ /(bhakthi|bakthi|om[[:space:]]*sai)/) {
               group = "Tamil | Devotional"
             }
 
@@ -104,9 +106,9 @@ jobs:
 
           cat "$tmpdir/radio_unique.m3u" >> "$out_file"
 
-          echo "✅ Pawn/StnlR.m3u generated ($total streams)"
+          echo "✅ Pawn/StnlR.m3u generated successfully ($total streams)"
 
-      - name: 🚀 Commit & Push StnlR.m3u
+      - name: 🚀 Commit & Push
         shell: bash
         run: |
           set -euxo pipefail
@@ -119,7 +121,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes — skipping commit."
           else
-            git commit -m "🎧 Auto-update Pawn/StnlR.m3u (Devotional split)"
+            git commit -m "🎧 Auto-update Pawn/StnlR.m3u (Devotional grouping fixed)"
             git pull --rebase origin main || git rebase --abort
             git push origin main || echo "⚠️ Push failed"
           fi
